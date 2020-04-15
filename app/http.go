@@ -18,9 +18,9 @@ func bindHttpHandlers() {
 			if p := recover(); p != nil {
 				buf := make([]byte, 1<<16)
 				runtime.Stack(buf, false)
-				reason := fmt.Sprintf("%v: %s", r, buf)
-				appLog.Critical("Runtime failure, reason -> %s", reason)
 				write500(w)
+				reason := fmt.Sprintf("%v: %s", r, buf)
+				appLog.Fatalf("Runtime failure, reason -> %s", reason)
 			}
 		}()
 		switch {

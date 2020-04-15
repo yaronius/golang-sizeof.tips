@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/gophergala/golang-sizeof.tips/internal/log/filelog"
-
-	l4g "code.google.com/p/log4go"
+	log "github.com/sirupsen/logrus"
 )
 
 // Relative path (from application root) to file
@@ -16,26 +14,14 @@ const ApplicationLogFile = "logs/application.log"
 // Description of filelog.Writer creation error.
 const errCreateLogFile = "failed to create '%s' log file"
 
-// Represents a logger with different levels of logs.
-type Logger interface {
-	Debug(interface{}, ...interface{})
-	Trace(interface{}, ...interface{})
-	Info(interface{}, ...interface{})
-	Warn(interface{}, ...interface{}) error
-	Error(interface{}, ...interface{}) error
-	Critical(interface{}, ...interface{}) error
-	Close()
-}
-
 // Creates and returns new application logger, ready for use.
-func NewApplicationLogger() (Logger, error) {
-	lgr := make(l4g.Logger)
-	if flw := filelog.NewWriter(ApplicationLogFile, false); flw == nil {
-		return nil, fmt.Errorf(errCreateLogFile, ApplicationLogFile)
+func NewApplicationLogger() (*log.Logger, error) {
+	lgr := log.New()
+	flw, err := os.OpenFile(ApplicationLogFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err == nil {
+		lgr.SetOutput(flw)
 	} else {
-		flw.SetFormat("[%D %T][%L] %M")
-		flw.SetWaitOnClose(true)
-		lgr.AddFilter("s", l4g.INFO, flw)
+		log.Warn("Failed to log to file, using default stderr")
 	}
 	return lgr, nil
 }
