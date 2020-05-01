@@ -1,4 +1,4 @@
-module github.com/gophergala/golang-sizeof.tips
+module github.com/yaronius/golang-sizeof.tips
 
 go 1.14
 
