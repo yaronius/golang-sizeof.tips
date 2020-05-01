@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: ngs/go-release.action@v1.0.2
+        uses: toby1991/go-release.action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: amd64
