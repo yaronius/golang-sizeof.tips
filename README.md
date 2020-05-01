@@ -3,14 +3,7 @@ Golang sizeof tips
 
 _Moved from [gophergala/golang-sizeof.tips](https://github.com/gophergala/golang-sizeof.tips)_
 
-**THE PROJECT IS CLOSED. THANKS ANYONE WHO USED IT!**  
-
-**Consider alternatives:**
-- https://github.com/dominikh/go-tools/tree/master/cmd/structlayout
-
 Web tool for interactive playing with Golang struct sizes.
-
-Try online version ~~[here](http://golang-sizeof.tips/).~~
 
 ## Aim
 Provide comfortable tool to see how fields in struct are aligned,
@@ -23,11 +16,9 @@ To install correct versions of dependencies
 ```bash
 go get github.com/gophergala/golang-sizeof.tips
 cd github.com/gophergala/golang-sizeof.tips
-goop install
-goop go build -o ./server
+go mod install
+go build -o ./server
 ```
-You may also install via simple `go get` by your own risk.
-
 
 ## Usage
 ```bash
