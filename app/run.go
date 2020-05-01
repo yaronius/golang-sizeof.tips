@@ -1,29 +1,31 @@
 package app
 
 import (
+	"flag"
+	"fmt"
 	"net/http"
-	"os"
 
 	log "github.com/sirupsen/logrus"
 )
 
+var httpPort int
+
+func init() {
+	flag.IntVar(&httpPort, "port", DefaultHttpPort, "Server port")
+}
+
 func Run() {
-	appLog = log.New()
+	flag.Parse()
 
 	if err := prepareTemplates(); err != nil {
 		log.Error("could not parse html templates, reason -> %s", err.Error())
 		return
 	}
 
-	httpPort := os.Getenv("_GO_HTTP")
-	if httpPort == "" {
-		httpPort = DefaultHttpPort
-	}
-
 	bindHttpHandlers()
 
-	appLog.Infof("Starting server on port %s...", httpPort)
-	if err := http.ListenAndServe(httpPort, nil); err != nil {
-		log.Error(err)
+	log.Infof("Starting server on port %d", httpPort)
+	if err := http.ListenAndServe(fmt.Sprintf(":%d", httpPort), nil); err != nil {
+		log.Errorf("Server error: %s", err)
 	}
 }

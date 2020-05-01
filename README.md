@@ -22,15 +22,8 @@ go build -o ./server
 
 ## Usage
 ```bash
-./server -http=:7777 start
-./server stop
-./server restart
+./server -port=7777
 ```
-
-## Platform support
-Tested on Linux and OS X x64 platforms, but should work properly and on other
-*nix-like platforms.
-Windows is not supported due to daemonization.
 
 ## License
 [Apache License 2.0](LICENSE)
