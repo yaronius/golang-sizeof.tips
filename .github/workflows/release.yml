@@ -9,69 +9,75 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: "386"
           GOOS: linux
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
   release-linux-amd64:
     name: release linux/amd64
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: amd64
           GOOS: linux
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
   release-darwin-386:
     name: release darwin/386
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: "386"
           GOOS: darwin
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
   release-darwin-amd64:
     name: release darwin/amd64
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: amd64
           GOOS: darwin
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
   release-windows-386:
     name: release windows/386
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: "386"
           GOOS: windows
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
   release-windows-amd64:
     name: release windows/amd64
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: compile and release
-        uses: yaronius/go-release.action@master
+        uses: yaronius/go-release.action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GOARCH: amd64
           GOOS: windows
           GO111MODULE: on
+          BINARY_NAME: sizeof-server
